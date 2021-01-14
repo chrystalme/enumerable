@@ -1,3 +1,6 @@
+# rubocop:disable Metrics/CyclomaticComplexity
+# rubocop:disable Metrics/PerceivedComplexity
+
 module Enumerable
   # 1 my_each
   def my_each
@@ -20,8 +23,8 @@ module Enumerable
       yield(to_a[i], i)
       i += 1
     end
-     # self
-   end
+    # self
+  end
 
   # 3 my_select
   def my_select
@@ -41,7 +44,7 @@ module Enumerable
       to_a.my_each { |i| return false if i.nil? || i == false }
     elsif !param.nil? && (param.is_a? Class)
       to_a.my_each { |i| return false unless [i.class, i.class.superclass].include?(param) }
-    elsif !param.nil? and param.class == Regexp
+    elsif !param.nil? and param.instance_of?(Regexp)
       to_a.my_each { |i| return false unless param.match(i) }
     else
       to_a.my_each { |i| return false if i != param }
@@ -58,7 +61,7 @@ module Enumerable
       to_a.my_each { |i| return true if i }
     elsif !param.nil? && (param.is_a? Class)
       to_a.my_each { |i| return true if [i.class, i.class.superclass].include?(param) }
-    elsif !param.nil? && param.class == Regexp
+    elsif !param.nil? && param.instance_of?(Regexp)
       to_a.my_each { |i| return true if param.match(i) }
     else
       to_a.my_each { |i| return true if i == param }
@@ -73,14 +76,14 @@ module Enumerable
     else
       !my_any?(param)
     end
- end
+  end
 
   # 7 my_count
   def my_count(param = nil)
     count = 0
     if block_given?
       to_a.my_each { |i| count += 1 if yield(i) }
-    elsif !block_give? && param.nil?
+    elsif !block_given? && param.nil?
       count = to_a.length
     else
       count = to_a.my_select { |i| i == param }.length
@@ -90,37 +93,39 @@ module Enumerable
 
   # 8 my_map
   def my_map(proc = nil)
-    return to_enum(:my_map)
-    unless block_given? || !proc.nil?
+    to_enum(:my_map) unless block_given? || !proc.nil?
 
     my_arr = []
     if proc.nil?
-      to_a.my_each { |i| my_arr << yield(i)}
+      to_a.my_each { |i| my_arr << yield(i) }
     else
-      to_a.my_each { |i| my_arr << proc.call(i) }                
+      to_a.my_each { |i| my_arr << proc.call(i) }
     end
-    my_arr 
+    my_arr
   end
 
-  #9 my_inject
-  def my_inject(initial = nil, sy = nil)
-    if ( !initial.nil? && sy.nil?) && (initial.is_a?(Symbol) || initial.is_a?(String))
-      sy = initial
+  # 9 my_inject
+  def my_inject(initial = nil, symb = nil)
+    if (!initial.nil? && symb.nil?) && (initial.is_a?(Symbol) || initial.is_a?(String))
+      symb = initial
       initial = nil
     end
-    if !block_given? && !sy.nil? 
-      to_a.my_each {|i| initial = initial.nil?? i : initial.send(sy, i)}
-    begin
-      to_a.my_each { |i| 
-        initial = initial.nil?
-      ? i : yield
-      (initial, i)
-      }
+    if !block_given? && !symb.nil?
+      to_a.my_each { |i| initial = initial.nil? ? i : initial.send(symb, i) }
+    else
+      to_a.my_each { |i| initial = initial.nil? ? i : yield(initial, i) }
     end
     initial
-  end 
+  end
 end
 
+# 10 multiply_els
+def multiply_els(arr)
+  arr.my_inject(1, '*')
+end
+
+# rubocop:enable Metrics/CyclomaticComplexity
+# rubocop:enable Metrics/PerceivedComplexity
 
 # my_arr = []
 friends = %w[Sharon Leo Leila Brian Arun]
@@ -135,8 +140,26 @@ friends.my_each_with_index { |friend, index| puts friend.to_s if index.odd? }
 puts "\n++++++  Test #3 my_select   ++++++"
 num.my_select { |x| puts x if x.even? }
 
+puts "\n++++++  Test #4 my_all   ++++++"
 p num.my_all?(&:odd?)
-puts (%w[ant bear cat].my_all? { |word| word.length >= 3 })
+puts(%w[ant bear cat].my_all? { |word| word.length >= 3 })
 
-puts '7.--------my_count--------'
-puts (num.my_count { |x| (x % 2).zero? })
+puts "\n++++++  Test #5 my_any   ++++++"
+p num.my_any?(&:even?)
+
+puts "\n++++++  Test #6 my_none   ++++++"
+friends.my_none? { |friend| friend.start_with?('S') }
+
+puts "\n++++++  Test #7 my_count    ++++++"
+p num.my_count
+p "She has #{friends.my_count} Friends"
+
+puts "\n++++++  Test #8 my_map    ++++++"
+p friends.my_map(&:upcase)
+num.my_map { |i| i * 2 }
+
+puts "\n++++++  Test #9 my_inject    ++++++"
+num.my_inject { |sum, n| sum + n }
+
+puts "\n++++++  Test #10 multiply_els    ++++++"
+puts multiply_els([2, 4, 5])
