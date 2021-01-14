@@ -1,33 +1,38 @@
 ![](https://img.shields.io/badge/Microverse-blueviolet)
 
-# Project Name
+# Enumerable Methods
 
-> One paragraph statement about the project.
+> Rebuilding Enumerable methods like #each #map #inject #select using hashes, arrays etc
 
-![screenshot](./app_screenshot.png)
+<!-- ![screenshot](./app_screenshot.png) -->
 
-Additional description about the project and its features.
+Our project is creating and testing #my_each_with_index, #my_all?, #my_any?, #my_none?, #my_count, #my_map and #my_inject and #multiply_els. Also using yield, call and proc methods.
 
 ## Built With
 
-- Major languages
-- Frameworks
-- Technologies used
+- Ruby
+<!-- - Frameworks -->
+- Ruby-rubocop
+- Github
 
-## Live Demo
+<!-- ## Live Demo -->
 
-[Live Demo Link](https://livedemo.com)
-
+<!-- [Live Demo Link](https://livedemo.com) -->
 
 ## Getting Started
 
-**This is an example of how you may give instructions on setting up your project locally.**
-**Modify this file to match your project, remove sections that don't apply. For example: delete the testing section if the currect project doesn't require testing.**
-
-
 To get a local copy up and running follow these simple example steps.
 
-### Prerequisites
+- Fork the repository
+- git clone https://github.com/chrystalme/enumerable.git
+- git checkout develop
+- git checkout -b branch name
+- git remote add upstream https://github.com/chrystalme/enumerable/
+- git pull upstream develop
+- git commit -m "commit message"
+- git push -u origin HEAD
+
+<!-- ### Prerequisites
 
 ### Setup
 
@@ -37,23 +42,21 @@ To get a local copy up and running follow these simple example steps.
 
 ### Run tests
 
-### Deployment
-
-
+### Deployment -->
 
 ## Authors
 
-👤 **Author1**
+👤 **Malieze Afam Ifeanyi**
 
-- GitHub: [@githubhandle](https://github.com/githubhandle)
-- Twitter: [@twitterhandle](https://twitter.com/twitterhandle)
-- LinkedIn: [LinkedIn](https://linkedin.com/linkedinhandle)
+- GitHub: [@chrystalme](https://github.com/chrystalme)
+- Twitter: [@afam_ifeanyi](https://twitter.com/afam_ifeanyi)
+- LinkedIn: [Malieze Afam Ifeanyi(chrys)](https://linkedin.com/afam-ifeanyi-chrys-malieze-63876576)
 
 👤 **Author2**
 
-- GitHub: [@githubhandle](https://github.com/githubhandle)
-- Twitter: [@twitterhandle](https://twitter.com/twitterhandle)
-- LinkedIn: [LinkedIn](https://linkedin.com/linkedinhandle)
+- GitHub: [@Jebitok-dev](https://github.com/jebitok-dev)
+- Twitter: [@Jsebitok](https://twitter.com/jsebitok)
+- LinkedIn: [LinkedIn](https://linkedin.com/in/sharon-jebitok/)
 
 ## 🤝 Contributing
 
@@ -65,11 +68,11 @@ Feel free to check the [issues page](issues/).
 
 Give a ⭐️ if you like this project!
 
-## Acknowledgments
+<!-- ## Acknowledgments
 
 - Hat tip to anyone whose code was used
 - Inspiration
-- etc
+- etc -->
 
 ## 📝 License
 

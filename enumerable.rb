@@ -11,7 +11,6 @@ module Enumerable
       yield to_a[i]
       i += 1
     end
-    #  self
   end
 
   # 2 my_each_with_index
@@ -23,7 +22,6 @@ module Enumerable
       yield(to_a[i], i)
       i += 1
     end
-    # self
   end
 
   # 3 my_select
