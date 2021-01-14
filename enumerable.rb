@@ -86,5 +86,14 @@ end
 friends = ['Sharon', 'Leo', 'Leila', 'Brian', 'Arun']
 num = [1,2,3,4,5,6,7,8]
 
+puts "\n++++++  Test #1 my_each   ++++++"
+friends.my_each {|friend| puts "#{friend} is my friend" }
+
+puts "\n++++++  Test #2 my_each_with_index    ++++++"
+friends.my_each_with_index {|friend, index| puts "#{friend}" if index.odd?}
+
+puts "\n++++++  Test #3 my_select   ++++++"
+num.my_select {|x| puts x if x.even?}
+
 p num.my_all?{|i| i.odd?}
 puts (%w[ant bear cat].my_all? { |word| word.length >= 3 })
