@@ -156,10 +156,10 @@ p "She has #{friends.my_count} Friends"
 
 puts "\n++++++  Test #8 my_map    ++++++"
 p friends.my_map(&:upcase)
-num.my_map { |i| i * 2 }
+num.my_map { |i| puts i * 2 }
 
 puts "\n++++++  Test #9 my_inject    ++++++"
-num.my_inject { |sum, n| sum + n }
+pp num.my_inject(:+)
 
 puts "\n++++++  Test #10 multiply_els    ++++++"
 puts multiply_els([2, 4, 5])
