@@ -121,6 +121,8 @@ module Enumerable
   end 
 end
 
+
+# my_arr = []
 friends = %w[Sharon Leo Leila Brian Arun]
 num = [1, 2, 3, 4, 5, 6, 7, 8]
 
