@@ -54,24 +54,22 @@ module Enumerable
 
   # 5 my_any
   def my_any?(param = nil)
-    if !block_given? || !param.nil?
-      my_each { |i| return true if yield(i) != false || i.nil? }
-    elsif block_given? || param.nil?
-      my_each { |i| return true if i.nil? || i != true }
-    elsif !param.nil? && (param.is_a? Class)
-      my_each { |i| return true if i.instance_of?(Numeric) || i.instance_of?(Integer) }
-    elsif !param.nil? && param.instance_of?(Regexp)
+    if block_given?
+      my_each { |i| return true if yield(i) }
+    elsif param.is_a? Class
+      my_each { |i| return true if i.instance_of?(Numeric) or i.instance_of?(Integer) }
+    elsif param.instance_of?(Regexp)
       my_each { |i| return true if param.match(i) }
     else
-      my_each { |i| return false if i != param }
+      false
     end
     false
   end
 
   # 6 my_none
   def my_none?(param = nil)
-    if !block_given? && param.nil?
-      my_each { |i| return true if i.nil? } # see rubocop
+    if block_given?
+      my_each { |i| return true unless i.nil? }
     elsif param.is_a?(Class)
       my_each { |i| return true unless i.instance_of?(param) && param.instance_of?(Numeric) }
     elsif param.instance_of?(Regexp)
