@@ -23,6 +23,7 @@ p num.my_any?
 
 puts "\n++++++  Test #6 my_none   ++++++"
 p num.my_none?(&:odd?)
+p num.none?(&:odd?)
 
 puts "\n++++++  Test #7 my_count    ++++++"
 p num.my_count

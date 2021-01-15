@@ -69,17 +69,17 @@ module Enumerable
   # 6 my_none
   def my_none?(param = nil)
     if block_given?
-      my_each { |i| return true unless i.nil? }
+      my_each { |i| return false unless i.nil? }
     elsif param.is_a?(Class)
-      my_each { |i| return true unless i.instance_of?(param) && param.instance_of?(Numeric) }
+      my_each { |i| return false unless i.instance_of?(param) && param.instance_of?(Numeric) }
     elsif param.instance_of?(Regexp)
-      my_each { |i| return true unless param.match(i) }
+      my_each { |i| return false unless param.match(i) }
     elsif !param.nil?
-      my_each { |i| return true unless i == param }
+      my_each { |i| return false unless i == param }
     else
-      my_any? { |i| return true if yield i }
+      my_any? { |i| return false if yield i }
     end
-    false
+    true
   end
 
   # 7 my_count
