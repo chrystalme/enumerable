@@ -57,7 +57,7 @@ module Enumerable
     if !block_given? || !param.nil?
       my_each { |i| return true if yield(i) != false || i.nil? }
     elsif block_given? || param.nil?
-      my_each { |i| return false if i.nil? || i != true }
+      my_each { |i| return true if i.nil? || i != true }
     elsif !param.nil? && (param.is_a? Class)
       my_each { |i| return true if i.instance_of?(Numeric) || i.instance_of?(Integer) }
     elsif !param.nil? && param.instance_of?(Regexp)
