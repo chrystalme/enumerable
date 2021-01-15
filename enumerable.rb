@@ -71,17 +71,23 @@ module Enumerable
   # 6 my_none
   def my_none?(param = nil)
     if !block_given? && param.nil?
-      my_each { |i| return true if i.nil? } # see rubocop
-    elsif param.is_a?(Class)
-      my_each { |i| return true unless i.instance_of?(param) && param.instance_of?(Numeric) }
-    elsif param.instance_of?(Regexp)
-      my_each { |i| return true unless param.match(i) }
-    elsif !param.nil?
-      my_each { |i| return true unless i == param }
-    else
-      my_any? { |i| return true if yield i }
+      my_each { |i| return false if i }
+      true
     end
-    false
+    if !block_given? && !param.nil?
+      if param.is_a?(Class)
+        my_each { |i| return false if i.class == param }
+        true
+      end
+      if param.class == Regexp
+        my_each { |i| return false if param.match(i) }
+        true
+      end
+      my_each { |i| return false if i == param }
+      true
+    end
+    my_any? { |i| return false if yield i }
+    true
   end
 
   # 7 my_count

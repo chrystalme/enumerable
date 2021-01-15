@@ -20,7 +20,8 @@ puts "\n++++++  Test #5 my_any   ++++++"
 p num.my_any?(&:even?)
 
 puts "\n++++++  Test #6 my_none   ++++++"
-friends.none? { |friend| friend.start_with?('Z') }
+friends.my_none? { |friend| friend.start_with?('Z') }
+p [1, 2, 3].my_none?(String) # => true
 
 puts "\n++++++  Test #7 my_count    ++++++"
 p num.my_count
