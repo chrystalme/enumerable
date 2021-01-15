@@ -95,7 +95,7 @@ module Enumerable
   def my_count(param = nil)
     count = 0
     if block_given?
-      to_a.my_each { |i| count += 1 if yield(i) }
+      my_each { |i| count += 1 if yield(i) }
     elsif !block_given? && param.nil?
       count = to_a.length
     else
@@ -119,6 +119,8 @@ module Enumerable
 
   # 9 my_inject
   def my_inject(initial = nil, symb = nil)
+    return raise LocalJumpError, '**No block given**' if !block_given? && initial.nil? && symb.nil?
+
     if (!initial.nil? && symb.nil?) && (initial.is_a?(Symbol) || initial.is_a?(String))
       symb = initial
       initial = nil
@@ -130,12 +132,25 @@ module Enumerable
     end
     initial
   end
+
+  # 10 my_map_proc
+  def my_map_proc
+    my_arr = []
+    if block_given?
+      my_each do |i|
+        my_arr << yield(i)
+      end
+    else
+      to_enum(:my_map_proc)
+    end
+    my_arr
+  end
 end
 # rubocop:enable Metrics/ModuleLength
 # rubocop:enable Metrics/CyclomaticComplexity
 # rubocop:enable Metrics/PerceivedComplexity
 
-# 10 multiply_els
+# 11 multiply_els
 def multiply_els(arr)
   arr.my_inject(1, '*')
 end
