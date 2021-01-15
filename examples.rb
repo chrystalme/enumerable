@@ -19,9 +19,8 @@ puts(%w[ant bear cat].my_all? { |word| word.length >= 3 })
 puts "\n++++++  Test #5 my_any   ++++++"
 p num.my_any?(&:even?)
 
-
 puts "\n++++++  Test #6 my_none   ++++++"
-friends.my_none? { |friend| friend.start_with?('Z') }
+friends.none? { |friend| friend.start_with?('Z') }
 
 puts "\n++++++  Test #7 my_count    ++++++"
 p num.my_count
