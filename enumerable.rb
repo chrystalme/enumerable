@@ -1,6 +1,6 @@
-# rubocop:disable Metrics/ModuleLength
-# rubocop:disable Metrics/CyclomaticComplexity
-# rubocop:disable Metrics/PerceivedComplexity
+# rubocop:enable Metrics/ModuleLength
+# rubocop:enable Metrics/CyclomaticComplexity
+# rubocop:enable Metrics/PerceivedComplexity
 module Enumerable
   # 1 my_each
   def my_each
@@ -54,30 +54,34 @@ module Enumerable
 
   # 5 my_any
   def my_any?(param = nil)
-    if block_given?
-      my_each { |i| return true if yield(i) }
-    elsif param.is_a? Class
-      my_each { |i| return true if i.instance_of?(Numeric) or i.instance_of?(Integer) }
-    elsif param.instance_of?(Regexp)
-      my_each { |i| return true if param.match(i) }
+    if param.nil?
+      if block_given?
+        my_each { |i| return true if yield(i) }
+      else my_each { |i| return true if i }
+      end
+    elsif param.is_a?(Regexp)
+      my_each { |i| return true if i.match(param) }
+    elsif param.is_a?(Module)
+      my_each { |i| return true if i.is_a?(param) }
     else
-      false
+      my_each { |i| return true if i == param }
     end
     false
   end
 
   # 6 my_none
   def my_none?(param = nil)
-    if block_given?
-      my_each { |i| return false unless i.nil? }
-    elsif param.is_a?(Class)
-      my_each { |i| return false unless i.instance_of?(param) && param.instance_of?(Numeric) }
-    elsif param.instance_of?(Regexp)
-      my_each { |i| return false unless param.match(i) }
-    elsif !param.nil?
-      my_each { |i| return false unless i == param }
+    if param.nil?
+      if block_given?
+        my_each { |i| return false if yield(i) }
+      else my_each { |i| return false if i }
+      end
+    elsif param.is_a?(Regexp)
+      my_each { |i| return false if i.match(param) }
+    elsif param.is_a?(Module)
+      my_each { |i| return false if i.is_a?(param) }
     else
-      my_any? { |i| return false if yield i }
+      my_each { |i| return false if i == param }
     end
     true
   end
@@ -137,9 +141,6 @@ module Enumerable
     my_arr
   end
 end
-# rubocop:enable Metrics/ModuleLength
-# rubocop:enable Metrics/CyclomaticComplexity
-# rubocop:enable Metrics/PerceivedComplexity
 
 # 11 multiply_els
 def multiply_els(arr)
