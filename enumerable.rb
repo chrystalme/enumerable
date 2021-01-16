@@ -141,6 +141,9 @@ module Enumerable
     my_arr
   end
 end
+# rubocop:disable Metrics/ModuleLength
+# rubocop:disable Metrics/CyclomaticComplexity
+# rubocop:disable Metrics/PerceivedComplexity
 
 # 11 multiply_els
 def multiply_els(arr)
