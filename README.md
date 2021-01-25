@@ -2,7 +2,21 @@
 
 # Enumerable Methods
 
-> Rebuilding Enumerable methods like #each #map #inject #select using hashes, arrays etc
+> In this project, we test our own enumerable methods using Ruby.
+
+We test the following methods
+ - `my_each`
+ - `my_each_with_index`
+ - `my_select`
+ - `my_all?`
+ - `my_any?`
+ - `my_none`
+ - `my_count`
+ - `my_map`
+ - `my_inject`
+ - `my_map_proc`
+ - `multiply_els`
+
 
 <!-- ![screenshot](./app_screenshot.png) -->
 
@@ -12,7 +26,7 @@ Our project is creating and testing #my_each_with_index, #my_all?, #my_any?, #my
 
 - Ruby
 <!-- - Frameworks -->
-- Ruby-rubocop
+- Ruby-rubocop (Gem)
 - Github
 
 <!-- ## Live Demo -->
@@ -21,16 +35,20 @@ Our project is creating and testing #my_each_with_index, #my_all?, #my_any?, #my
 
 ## Getting Started
 
-To get a local copy up and running follow these simple example steps.
+To get a local copy of the repository please run the following commands on your terminal:
 
-- Fork the repository
-- git clone https://github.com/chrystalme/enumerable.git
-- git checkout develop
-- git checkout -b branch name
-- git remote add upstream https://github.com/chrystalme/enumerable/
-- git pull upstream develop
-- git commit -m "commit message"
-- git push -u origin HEAD
+`git clone https://github.com/jebitok-dev/enumerable.git`
+
+`cd ENUMERABLE`
+
+Testing
+
+
+
+> Rspec is used for this particular test.
+
+- run `gem install rspec` to install rspect on your pc.
+- To test the code, run `rspec` from root of the folder using terminal.
 
 <!-- ### Prerequisites
 
@@ -52,11 +70,11 @@ To get a local copy up and running follow these simple example steps.
 - Twitter: [@afam_ifeanyi](https://twitter.com/afam_ifeanyi)
 - LinkedIn: [Malieze Afam Ifeanyi(chrys)](https://linkedin.com/afam-ifeanyi-chrys-malieze-63876576)
 
-👤 **Author2**
+👤 **Ralph**
 
-- GitHub: [@Jebitok-dev](https://github.com/jebitok-dev)
-- Twitter: [@Jsebitok](https://twitter.com/jsebitok)
-- LinkedIn: [LinkedIn](https://linkedin.com/in/sharon-jebitok/)
+- GitHub: [Ralph-1](https://github.com/jebitok-dev)
+- Twitter: [@NotRalph0](https://twitter.com/NotRalph0)
+- LinkedIn: [Ralph Oburu](https://www.linkedin.com/in/ralph-oburu-092a561b1/)
 
 ## 🤝 Contributing
 
