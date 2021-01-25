@@ -63,4 +63,21 @@ describe Enumerable do
       expect(result).to eq([])
     end
   end
+
+  describe '#my_all?' do
+    it 'checks elemens with the length of 3' do
+      result = string_array.my_all? { |x| x.length == 3 }
+      expect(result).to be_truthy
+    end
+
+    it 'checks if all numbers are odd' do
+      result = array.my_all?(&:odd?)
+      expect(result).to be_truthy
+    end
+
+    it 'checks if all numbers are divisble by 3' do
+      result = array.my_all? { |x| x % 3 == 0 }
+      expect(result).to be_falsey
+    end
+  end
 end
