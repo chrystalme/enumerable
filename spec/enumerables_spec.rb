@@ -15,16 +15,16 @@ describe Enumerable do
     it 'should return the original array' do
       expect(string_array.my_each { |x| x }).to eq(string_array)
     end
-
+  
     it 'it should return enumerator if block is not given' do
       expect(array.my_each).to be_an Enumerator
     end
   end
 
-  describe '#my_each_with_index' do
+  describe '#my_each_with_index' do 
     it 'Should return the index of the array' do
       result = []
-      array.my_each_with_index { |_x, index| result << index }
+      array.my_each_with_index{ |x, index| result << index}
       expect(result).to eq([0, 1, 2, 3])
     end
 
@@ -36,4 +36,27 @@ describe Enumerable do
       expect(array.my_each_with_index { nil }).to eq(array)
     end
   end
+
+  describe '#my_select'do
+    it 'should return the square of each number' do
+      result = []
+      array.my_select { |x| result << x * 2}
+      expect(result).to eq([2, 6, 10, 14])
+    end
+
+    it 'return enumerator with no block passed' do
+      expect(array.my_select).to be_an Enumerator
+    end
+
+    it 'return the selected value' do
+      result = array.my_select{ |x| x == 7}
+      expect(result).to eq([7])
+    end
+  end
+
+  it 'returns even elements' do
+    result = array.my_select(&:even?)
+    expect(result).to eq([])
+  end
+ 
 end
