@@ -52,10 +52,15 @@ describe Enumerable do
       result = array.my_select { |x| x == 7 }
       expect(result).to eq([7])
     end
-  end
 
-  it 'returns even elements' do
-    result = array.my_select(&:even?)
-    expect(result).to eq([])
+    it 'returns even elements' do
+      result = array.my_select(&:even?)
+      expect(result).to eq([])
+    end
+
+    it 'returns even elements' do
+      result = array.my_select(&:even?)
+      expect(result).to eq([])
+    end
   end
 end
