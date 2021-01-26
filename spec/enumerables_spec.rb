@@ -2,7 +2,7 @@ require './enumerable.rb'
 
 describe Enumerable do
   let(:array) { [1, 3, 5, 7] }
-  let(:range) { (1..8) }
+  let(:range) { (1..5) }
   let(:string_array) { %w[cat yam dog yam] }
 
   describe '#my_each' do
@@ -126,6 +126,18 @@ describe Enumerable do
 
     it 'return the arrays lenth when no block is given' do
       expect(string_array.my_count).to eq(4)
+    end
+  end
+
+  describe '#my_map' do
+    it 'multiplies all element of the array by 2' do
+      result = []
+      array.my_map { |x| result << x * 3 }
+      expect(result). to eq([3, 9, 15, 21])
+    end
+
+    it 'multiplies all the elements in a range' do 
+      expect(range.my_map { |x| x * 5}).to eq([5, 10, 15, 20, 25])
     end
   end
 end
