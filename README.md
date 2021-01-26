@@ -70,9 +70,15 @@ Testing
 - Twitter: [@afam_ifeanyi](https://twitter.com/afam_ifeanyi)
 - LinkedIn: [Malieze Afam Ifeanyi(chrys)](https://linkedin.com/afam-ifeanyi-chrys-malieze-63876576)
 
+👤 **Sharon Jebitok**
+
+- GitHub: [@Jebitok-dev](https://github.com/jebitok-dev)
+- Twitter: [@jsebitok](https://twitter.com/jsebitok)
+- LinkedIn: [Sharon Jebitok](https://linkedin.com/in/Sharon-Jebitok)
+
 👤 **Ralph**
 
-- GitHub: [Ralph-1](https://github.com/jebitok-dev)
+- GitHub: [Ralph-1](https://github.com/Ralph-1)
 - Twitter: [@NotRalph0](https://twitter.com/NotRalph0)
 - LinkedIn: [Ralph Oburu](https://www.linkedin.com/in/ralph-oburu-092a561b1/)
 
