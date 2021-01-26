@@ -96,4 +96,22 @@ describe Enumerable do
       expect(result).to be_truthy
     end
   end
+
+  describe '#my_none?' do
+    it 'it should return true for even numbers' do 
+      expect(array.my_none?(&:even?)).to be_truthy
+    end
+
+    it 'it returns false for length of 3' do
+      expect(string_array.my_none? { |x| x.length == 3}).to be_falsey
+    end
+    
+    it 'it returns false for false boolean' do
+      expect([true, false, true].my_none?).to be_falsey
+    end
+
+    it 'it should return true' do
+      expect(string_array.my_none?('z')).to be_truthy
+    end
+  end
 end
