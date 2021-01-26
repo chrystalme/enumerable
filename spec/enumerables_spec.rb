@@ -98,20 +98,34 @@ describe Enumerable do
   end
 
   describe '#my_none?' do
-    it 'it should return true for even numbers' do 
+    it 'it should return true for even numbers' do
       expect(array.my_none?(&:even?)).to be_truthy
     end
 
     it 'it returns false for length of 3' do
-      expect(string_array.my_none? { |x| x.length == 3}).to be_falsey
+      expect(string_array.my_none? { |x| x.length == 3 }).to be_falsey
     end
-    
+
     it 'it returns false for false boolean' do
       expect([true, false, true].my_none?).to be_falsey
     end
 
     it 'it should return true' do
       expect(string_array.my_none?('z')).to be_truthy
+    end
+  end
+
+  describe 'my_count' do
+    it 'returns the number of elemnts in the array' do
+      expect(array.my_count).to eq(4)
+    end
+
+    it 'returns number of elements divisble by 2' do
+      expect(array.my_count(&:even?)).to eq(0)
+    end
+
+    it 'return the arrays lenth when no block is given' do
+      expect(string_array.my_count).to eq(4)
     end
   end
 end
