@@ -57,22 +57,25 @@ describe Enumerable do
       result = array.my_select(&:even?)
       expect(result).to eq([])
     end
-
-    it 'returns even elements' do
-      result = array.my_select(&:even?)
-      expect(result).to eq([])
-    end
   end
 
   describe '#my_all?' do
-    it 'checks elemens with the length of 3' do
+    it 'checks elements with the length of 3' do
       result = string_array.my_all? { |x| x.length == 3 }
       expect(result).to be_truthy
+    end
+
+    it 'returns false if block does not return true' do
+      expect([nil, true, 99].my_all?).to eql(false)
     end
 
     it 'checks if all numbers are odd' do
       result = array.my_all?(&:odd?)
       expect(result).to be_truthy
+    end
+
+    it 'return false unless value matches pattern' do
+      expect(string_array.my_all?(/a/)).to eql(false)
     end
 
     it 'checks if all numbers are divisble by 3' do
@@ -95,6 +98,14 @@ describe Enumerable do
       result = string_array.my_any? { |x| x.length == 3 }
       expect(result).to be_truthy
     end
+
+    it 'return false if the block does not return true' do
+      expect(string_array.my_any?(/p/)).to eql(false)
+    end
+
+    it 'return false unless when value == pattern' do
+      expect([nil, true, 99].my_any?).to eql(true)
+    end
   end
 
   describe '#my_none?' do
@@ -104,6 +115,10 @@ describe Enumerable do
 
     it 'it returns false for length of 3' do
       expect(string_array.my_none? { |x| x.length == 3 }).to be_falsey
+    end
+
+    it 'return true if block is not given only if none of the elements is true' do
+      expect([].my_none?).to eql(true)
     end
 
     it 'it returns false for false boolean' do
@@ -130,6 +145,10 @@ describe Enumerable do
   end
 
   describe '#my_map' do
+    it 'return enumerable when no block is given' do
+      expect((1..4).my_map).to be_instance_of(Enumerator)
+    end
+
     it 'multiplies all element of the array by 2' do
       result = []
       array.my_map { |x| result << x * 3 }
@@ -157,6 +176,12 @@ describe Enumerable do
 
     it 'multiplies all elements in an array with each other' do
       expect(multiply_els(array)).to eql(105)
+    end
+
+    it 'multiplies all element of the array by 2' do
+      result = []
+      array.my_map { |x| result << x * 3 }
+      expect(result).to eq([3, 9, 15, 21])
     end
   end
 end
