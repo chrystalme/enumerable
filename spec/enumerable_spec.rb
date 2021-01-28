@@ -59,6 +59,45 @@ describe Enumerable do
     end
   end
 
-  describe '#my_all' do
+  describe '#my_all?' do
+    it 'returns true if the elements match' do
+      res = friends.my_all? { |i| i.length >= 3 }
+      expect(res).to be true
+    end
+
+    it 'returns false because numbers not greater than 10 in num_array' do
+      res = num_array.my_all? { |i| i > 10 }
+      expect(res).to be false
+    end
+
+    it 'returns false if block does not return true' do
+      expect([true, nil, 50].my_all?).to eql(false)
+    end
+
+    it 'returns false unless pattern is matched' do
+      expect(friends.my_all?([/s/])).to eql(false)
+    end
+  end
+
+  describe '#my_any' do
+    it 'returns true if there are any match' do
+      expect(num_array.my_any?(&:even?)).to be true
+    end
+
+    it 'returns true if there are any match' do
+      expect(num_array.my_any?(&:odd?)).to_not be false
+    end
+
+    it 'returns false if the block does not return true' do
+      expect(friends.my_any?([/s/])).to eql(false)
+    end
+
+    it 'returns true if any element matches' do
+      expect([true, nil, 50].my_any?).to eql(true)
+    end
+
+    it 'returns true if the elements are strings' do
+      expect(friends.my_any? { |i| i.is_a?(String) }).to_not be false
+    end
   end
 end
