@@ -16,6 +16,10 @@ describe Enumerable do
       expect(friends.my_each { |i| i }).to eq(friends)
     end
 
+    it 'returns range not num_array' do
+      expect(range.my_each { |i| i }).to_not eq(num_array)
+    end
+
     it 'returns an enumerator if block not given' do
       expect(friends.my_each).to be_an Enumerator
     end
@@ -128,10 +132,44 @@ describe Enumerable do
   end
 
   describe '#my_count' do
-    
     it 'should return the number of items in the range' do
       expect(range.my_count).to eq(8)
     end
 
+    it 'returns the number of items in the array that are odd' do
+      expect(range.my_count(&:even?)).to eq(4)
+    end
+
+    it 'returns the number of items in the array that are odd' do
+      expect(range.my_count(&:odd?)).to_not eq(5)
+    end
+
+    it 'retuns the number of items in the array' do
+      expect(friends.my_count).to eq(5)
+    end
+  end
+
+  describe '#my_map' do
+    it 'returns enumerator when no block is given' do
+      expect(range.my_map).to be_instance_of(Enumerator)
+    end
+
+    it 'returns the friends name with th ' do
+      res = []
+      friends.my_map { |i| res << "#{i}th" }
+      expect(res).to_not eq(%w[Sharon Leo Leila Brian Arun])
+    end
+
+    it 'returns the friends name with th ' do
+      res = []
+      friends.my_map { |i| res << "#{i}th" }
+      expect(res).to eq(%w[Sharonth Leoth Leilath Brianth Arunth])
+    end
+
+    it 'returns the multiple of items by 5' do
+      res = []
+      range.my_map { |i| res << i * 5 }
+      expect(res).to eq([5, 10, 15, 20, 25, 30, 35, 40])
+    end
   end
 end
