@@ -100,4 +100,10 @@ describe Enumerable do
       expect(friends.my_any? { |i| i.is_a?(String) }).to_not be false
     end
   end
+
+  describe '#my_none' do
+    it 'returns true is block is not given only if none of the elements is true' do
+      expect([].my_none?).to_not eq(false)
+    end
+  end
 end
