@@ -74,6 +74,10 @@ describe Enumerable do
       expect([true, nil, 50].my_all?).to eql(false)
     end
 
+    it 'not to returns true if block does not return false' do
+      expect([true, nil, 50].my_all?).to_not eql(true)
+    end
+
     it 'returns false unless pattern is matched' do
       expect(friends.my_all?([/s/])).to eql(false)
     end
@@ -105,5 +109,29 @@ describe Enumerable do
     it 'returns true is block is not given only if none of the elements is true' do
       expect([].my_none?).to_not eq(false)
     end
+
+    it 'returns false if we check for even items' do
+      expect(num_array.my_none?(&:even?)).to be false
+    end
+
+    it 'returns false for false boolean' do
+      expect([false, true, false].my_none?).to eq(false)
+    end
+
+    it 'return true for length greater than 3' do
+      expect(friends.my_none? { |i| i.length >= 3 }).to_not be true
+    end
+
+    it 'returns false if there are no matches' do
+      expect(friends.my_none? { |i| i.match(/T./) }).to_not be false
+    end
+  end
+
+  describe '#my_count' do
+    
+    it 'should return the number of items in the range' do
+      expect(range.my_count).to eq(8)
+    end
+
   end
 end
