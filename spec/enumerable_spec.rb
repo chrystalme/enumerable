@@ -181,5 +181,10 @@ describe Enumerable do
     it 'returns the sum of the values in the array' do
       expect(num_array.my_inject(0, :+)).to eq(36)
     end
+
+    it 'returns the longest friend name' do
+      longest = friends.inject([]) { |res, name| res.length > name.length ? res : name }
+      expect(longest).to eq('Sharon')
+    end
   end
 end
