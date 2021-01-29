@@ -172,4 +172,14 @@ describe Enumerable do
       expect(res).to eq([5, 10, 15, 20, 25, 30, 35, 40])
     end
   end
+
+  describe '#my_inject' do
+    it 'returns the product of all the values in the array' do
+      expect(num_array.my_inject(:*)).to eq(40_320)
+    end
+
+    it 'returns the sum of the values in the array' do
+      expect(num_array.my_inject(0, :+)).to eq(36)
+    end
+  end
 end
